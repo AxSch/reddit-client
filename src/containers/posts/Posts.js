@@ -20,8 +20,7 @@ class Posts extends Component {
     }
     
     componentDidMount() {
-        // this.fetchPagePosts()
-        throw new Error("Do one")
+        this.fetchPagePosts()
     }
 
     render() {
