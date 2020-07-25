@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, lazy, Suspense } from 'react'
 import { fetchAPI } from '../../api/api'
-import CommentList from '../../components/CommentList/CommentList'
+import SkeletalLoading from '../../components/SkeletalLoading'
+// import CommentList from '../../components/CommentList/CommentList'
+
+const CommentList = lazy(() => import('../../components/CommentList/CommentList'))
 
 class Post extends Component {
     constructor(props) {
@@ -8,19 +11,16 @@ class Post extends Component {
         
         this.state = {
             postComments: null,
-            loading: true
         }
     }
 
     async fetchComments() {
-        const { loading } = this.state
         const { location } = this.props
 
         const splitLocation = location.pathname.split('/')
         const postId = splitLocation[splitLocation.length - 1]
         const postComments = await fetchAPI.fetchPostComments(postId)
         this.setState({ postComments: postComments[1].data })
-        this.setState({ loading: !loading})
 
     }
     
@@ -29,11 +29,13 @@ class Post extends Component {
     }
     
     render() {
-        const { loading, postComments } = this.state
-        
+        const { postComments } = this.state
+
         return (
             <div>
-                {!loading ? <CommentList comments={postComments.children} /> : <div>Lazy loading</div>}
+                <Suspense fallback={<SkeletalLoading type={"post"} />}>
+                    <CommentList comments={postComments ? postComments.children: []} />
+                </Suspense>
             </div>
         )
     }
