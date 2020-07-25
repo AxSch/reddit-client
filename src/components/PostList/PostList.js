@@ -1,10 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectPosts } from '../../reducers/posts/postsSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectPosts, selectNextPage, updatePosts } from '../../reducers/posts/postsSlice'
 import PostListItem from '../PostListItem/PostListItem'
+import { fetchAPI } from '../../api/api'
 
 const PostList = () => {
     const posts = useSelector(selectPosts)
+    const dispatch = useDispatch()
+    const nextPageString = useSelector(selectNextPage)
     const renderPosts = posts => {
         if (posts) {
             return posts.map((post, key) => {
@@ -16,9 +19,22 @@ const PostList = () => {
             return ""
         }
     }
+    const fetchPosts = async() => {
+        const posts = await fetchAPI.fetchPosts(nextPageString)
+        dispatch(updatePosts(posts.data.children))
+    }
+
+
+    const handleOnClick = () => {
+        fetchPosts()
+    }
+
     return (
         <div>
             {renderPosts(posts)}
+            <div>
+                <button onClick={handleOnClick}>Show More</button>
+            </div>
         </div>
     )
 }
