@@ -19,21 +19,16 @@ const PostList = () => {
             return ""
         }
     }
-    const fetchPosts = async() => {
+    const fetchMorePosts = async() => {
         const posts = await fetchAPI.fetchPosts(nextPageString)
         dispatch(updatePosts(posts.data.children))
-    }
-
-
-    const handleOnClick = () => {
-        fetchPosts()
     }
 
     return (
         <div>
             {renderPosts(posts)}
             <div>
-                <button onClick={handleOnClick}>Show More</button>
+                <button onClick={fetchMorePosts}>Show More</button>
             </div>
         </div>
     )
