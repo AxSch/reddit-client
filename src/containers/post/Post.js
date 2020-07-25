@@ -2,7 +2,6 @@ import React, { Component, lazy, Suspense } from 'react'
 import { fetchAPI } from '../../api/api'
 import SkeletalLoading from '../../components/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
-// import CommentList from '../../components/CommentList/CommentList'
 
 const CommentList = lazy(() => import('../../components/CommentList/CommentList'))
 
