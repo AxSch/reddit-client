@@ -29,7 +29,7 @@ class Post extends Component {
     }
     
     render() {
-        const { loading } = this.state
+        const { loading, postComments } = this.state
         
         return (
             <div>
