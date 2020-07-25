@@ -12,16 +12,16 @@ class Posts extends Component {
         }
     }
 
-    async fetchAllPosts() {
-        const posts  = await fetchAPI.fetchPosts()
+    async fetchPagePosts(pageString) {
+        const posts  = await fetchAPI.fetchPosts(pageString)
         store.dispatch(storePosts(posts.data.children))
-        store.dispatch(setNextPage(posts.data.after))
+        store.dispatch(setNextPage(posts.data.after))  
         this.setState({ loading: !this.state.loading })
-
+        
     }
-
+    
     componentDidMount() {
-        this.fetchAllPosts()
+        this.fetchPagePosts()
     }
 
     render() {
