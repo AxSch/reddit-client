@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fetchAPI } from '../../api/api'
+import CommentList from '../../components/CommentList/CommentList'
 
 class Post extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class Post extends Component {
         
         return (
             <div>
-                {!loading ? <div>Comments section</div> : <div>Lazy loading</div>}
+                {!loading ? <CommentList comments={postComments.children} /> : <div>Lazy loading</div>}
             </div>
         )
     }
