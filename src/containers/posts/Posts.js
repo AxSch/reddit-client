@@ -1,22 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, lazy, Suspense } from 'react'
 import { fetchAPI } from '../../api/api'
 import { storePosts, setNextPage } from '../../reducers/posts/postsSlice'
 import store from '../../app/store'
-import PostList from '../../components/PostList/PostList'
+import SkeletalLoading from '../../components/SkeletalLoading'
 
+
+const PostList = lazy(() => import('../../components/PostList/PostList'))
 class Posts extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            loading: true
-        }
-    }
 
     async fetchPagePosts(pageString) {
         const posts  = await fetchAPI.fetchPosts(pageString)
         store.dispatch(storePosts(posts.data.children))
         store.dispatch(setNextPage(posts.data.after))  
-        this.setState({ loading: !this.state.loading })
         
     }
     
@@ -25,11 +20,12 @@ class Posts extends Component {
     }
 
     render() {
-        const { loading } = this.state
 
         return (
             <>
-                {!loading ? <PostList /> : <div>Lazy loading...</div>}
+                <Suspense fallback={<SkeletalLoading type="posts"/>}>
+                    <PostList />
+                </Suspense>
             </>
         )
     }
