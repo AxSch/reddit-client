@@ -1,5 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
+import { normalizeData } from '../../helpers/normalizeData';
 
 
 const postsSlice = createSlice({
@@ -11,24 +12,26 @@ const postsSlice = createSlice({
     reducers: {
         storePosts: (state, action) => {
             const data = [...action.payload]
-            const filteredData = data.filter(element => element.data["over_18"] === false) 
-            const normalizedData = []
-            let dataObj = {}
-            filteredData.forEach(element => {
-                dataObj = element.data
-                normalizedData.push(dataObj)
-                
-            })
-            state.data = normalizedData
+            
+            state.data = normalizeData(data)
         },
         setNextPage: (state, action) => {
             state.nextPage = action.payload
         },
+        updatePosts: (state, action) => {
+            const data = [...action.payload]
+            const normalizedData = normalizeData(data)
+            normalizedData.forEach(post => {
+                state.data.push(post)
+            })
+        }
     }
 })
 
 export const selectPosts = state => state.posts.data
 
-export const { storePosts, setNextPage } = postsSlice.actions
+export const selectNextPage = state => state.posts.nextPage
+
+export const { storePosts, setNextPage, updatePosts } = postsSlice.actions
 
 export default postsSlice.reducer
