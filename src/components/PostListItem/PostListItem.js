@@ -19,7 +19,7 @@ const PostListItem = ({ post }) => {
                 <div>{post.title}</div>
             </Link>
             <div>
-                <img src={post.url} alt={post.title}  width="600px" height="600px"/>
+                <img src={post.thumbnail} alt={post.title} />
             </div>
             <div>
             <span>icon - score {post.score}</span>
