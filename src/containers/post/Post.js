@@ -3,7 +3,7 @@ import { fetchAPI } from '../../api/api'
 import SkeletalLoading from '../../components/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
 import { selectPost } from '../../reducers/posts/postsSlice'
-import store from '../../app/store'
+import { store } from '../../app/store'
 
 const CommentList = lazy(() => import('../../components/CommentList/CommentList'))
 
