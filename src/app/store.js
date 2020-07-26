@@ -1,8 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
-import postsReducer from '../reducers/posts/postsSlice';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist'
+import postsReducer from '../reducers/posts/postsSlice'
+import storage from 'redux-persist/lib/storage'
 
-export default configureStore({
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, postsReducer)
+
+
+export const store = configureStore({
   reducer: {
-    posts: postsReducer,
+    posts: persistedReducer,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
+
+export const persistor = persistStore(store)
