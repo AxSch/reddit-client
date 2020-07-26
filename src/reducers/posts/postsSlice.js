@@ -32,6 +32,8 @@ export const selectPosts = state => state.posts.data
 
 export const selectNextPage = state => state.posts.nextPage
 
+export const selectPost = (state, postId) => state.posts.data.filter(post => post.id === postId)
+
 export const { storePosts, setNextPage, updatePosts } = postsSlice.actions
 
 export default postsSlice.reducer
