@@ -13,7 +13,7 @@ const PostList = () => {
         if (posts) {
             return posts.map((post, key) => {
                 return (
-                    <PostListItem post={post} key={key} />
+                    <PostListItem post={post} key={key} keyNo={key}/>
                 )
             })
         } else {
