@@ -1,0 +1,20 @@
+.postlist-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.postlist-button {
+    padding: 20px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: rgb(51, 77, 77);
+    color: rgb(253, 253, 253);
+
+    &:hover {
+        background-color: rgb(102, 153, 153);
+        
+    }
+}
