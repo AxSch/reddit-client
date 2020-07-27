@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import ReactHtmlParser from 'react-html-parser';
 import { fetchAPI } from '../../api/api'
-import SkeletalLoading from '../../components/SkeletalLoading'
+import SkeletalLoading from '../../components/SkeletalLoading/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
 import { selectPost, storePostComments } from '../../reducers/posts/postsSlice'
 import { store } from '../../app/store'

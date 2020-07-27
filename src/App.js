@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import './App.scss';
-import SkeletalLoading from './components/SkeletalLoading';
+import SkeletalLoading from './components/SkeletalLoading/SkeletalLoading';
 import ErrorBoundary from './ErrorBoundary';
 
 const Posts = lazy(() => import('./containers/posts/Posts'))

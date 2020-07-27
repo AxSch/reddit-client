@@ -1,0 +1,36 @@
+@import '../PostList/PostList';
+
+@import '../PostListItem/PostListItem';
+
+@import '../../containers/Posts/Posts';
+
+@import '../../containers/Post/Post';
+
+.postlist-card-dummy {
+    width: auto;
+    height: 118px;
+    background-color: rgb(240, 245, 245);
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.posts-header-dummy {
+    width: auto;
+    height: 38px;
+    background-color: rgb(240, 245, 245);
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.post-dummy {
+    width: auto;
+    height: 38px;
+    background-color: rgb(240, 245, 245);
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+}
+
+

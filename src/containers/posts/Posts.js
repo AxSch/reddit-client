@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from 'react'
 import { fetchAPI } from '../../api/api'
 import { storePosts, setNextPage } from '../../reducers/posts/postsSlice'
 import { store } from '../../app/store'
-import SkeletalLoading from '../../components/SkeletalLoading'
+import SkeletalLoading from '../../components/SkeletalLoading/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
 import './Posts.scss'
 
