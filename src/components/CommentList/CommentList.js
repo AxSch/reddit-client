@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectPostComments } from '../../reducers/posts/postsSlice'
 import './CommentList.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBomb } from '@fortawesome/free-solid-svg-icons'
 
 const CommentList = () => {
     const comments = useSelector(selectPostComments)
@@ -30,7 +32,7 @@ const CommentList = () => {
                 <div className="comment" key={key}>
                     <div className="comment-metadata">
                         <span>{comment.author}</span>
-                        <span>{comment.score}</span>
+                        <span><FontAwesomeIcon icon={faBomb} />{parseInt(comment.score).toLocaleString()}</span>
                         <span>{comment.created}</span>
                     </div>
                     <div className="comment-body">
