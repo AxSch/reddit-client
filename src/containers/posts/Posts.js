@@ -10,9 +10,9 @@ import './Posts.scss'
 const PostList = lazy(() => import('../../components/PostList/PostList'))
 class Posts extends Component {
 
-    async fetchPagePosts(pageString) {
+    async fetchPagePosts() {
         try {
-            const posts = await fetchAPI.fetchPosts(pageString)
+            const posts = await fetchAPI.fetchPosts()
             store.dispatch(storePosts(posts.data.children))
             store.dispatch(setNextPage(posts.data.after))
         } catch (error) {

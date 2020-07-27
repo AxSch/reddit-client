@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectPosts, selectNextPage, updatePosts } from '../../reducers/posts/postsSlice'
+import { selectPosts, selectNextPage, updatePosts, setNextPage } from '../../reducers/posts/postsSlice'
 import PostListItem from '../PostListItem/PostListItem'
 import { fetchAPI } from '../../api/api'
+import './PostList.scss'
 
 const PostList = () => {
     const posts = useSelector(selectPosts)
@@ -20,9 +21,11 @@ const PostList = () => {
             return ""
         }
     }
+    
     const fetchMorePosts = async () => {
         const posts = await fetchAPI.fetchPosts(nextPageString)
         dispatch(updatePosts(posts.data.children))
+        dispatch(setNextPage(posts.data.after))
     }
 
     const renderPostsSection = (posts) => {
@@ -30,14 +33,13 @@ const PostList = () => {
             return (
                 <>
                     {renderPosts(posts)}
-                    <div>
-                        <button onClick={fetchMorePosts}>Show More</button>
+                    <div className="postlist-row">
+                        <button className="postlist-button" onClick={fetchMorePosts}>Show More</button>
                     </div>
                 </>
             )
         } else return ""
     }
-
     return (
         <div>
             {renderPostsSection(posts)}
