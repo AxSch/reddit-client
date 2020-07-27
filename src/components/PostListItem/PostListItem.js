@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useRouteMatch } from "react-router-dom"
 import './PostListItem.scss'
 import { selectPosts } from '../../reducers/posts/postsSlice'
-import { useSelector, useStore } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const PostListItem = ({ postId, keyNo }) => {
     const posts = useSelector(selectPosts)
