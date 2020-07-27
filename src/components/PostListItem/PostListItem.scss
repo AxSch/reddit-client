@@ -1,0 +1,69 @@
+.postlist-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgb(240, 245, 245);
+    border-radius: 15px;
+}
+
+.postlist-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.postlist-col {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.postlist-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.postlist-author,
+.postlist-subreddit {
+    color: rgb(102, 153, 153);
+}
+
+.postlist-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.postlist-thumbnail {
+    border-radius: 3px;
+}
+
+.postlist-link {
+    color: rgb(51, 77, 77);
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 18px;
+    
+    &:hover {
+        color: rgb(102, 153, 153);
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+.postlist-metadata {
+    position: absolute;
+    top: 120px;
+}
+
+.postlist-metadata-icon {
+    margin-right: 20px;
+}
