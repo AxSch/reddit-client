@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
-import './App.css';
+import './App.scss';
 import SkeletalLoading from './components/SkeletalLoading';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -9,7 +9,7 @@ const Post = lazy(() => import('./containers/post/Post'))
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <ErrorBoundary>
         <Suspense fallback={<SkeletalLoading />}>
           <Router>
