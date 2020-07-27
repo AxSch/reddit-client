@@ -9,13 +9,13 @@ const CommentList = () => {
         const topComments = []
         let prevScore = 0
         let maxScore = 0
-        if (comments.length > 0) {
-            comments.forEach(comment => {
-                if (comment.data.score > prevScore) {
-                    prevScore = comment.data.score
+        if (Object.keys(comments).length > 0) {
+            Object.values(comments).forEach(comment => {
+                if (comment.score > prevScore) {
+                    prevScore = comment.score
                     if (prevScore > maxScore) {
                         maxScore = prevScore
-                        topComments.push(comment.data)
+                        topComments.push(comment)
                     }
                 }
 
@@ -44,7 +44,7 @@ const CommentList = () => {
     }
 
     const renderCommentsSection = comments => {
-        if (comments !== [] && comments.length > 0) {
+        if (comments && Object.keys(comments).length > 0) {
             const noOftopComments = calculateTopComments(comments).length
             const topComments = calculateTopComments(comments)
             const renderTopComments = renderComments(topComments)
@@ -52,8 +52,7 @@ const CommentList = () => {
             return (
                 <>
                     <div className="comment-list-header">
-                        <h4>Top comments - {noOftopComments} </h4
-                    ></div>
+                        <h4>Top comments - {noOftopComments} </h4></div>
                     {renderTopComments}
                 </>
             )

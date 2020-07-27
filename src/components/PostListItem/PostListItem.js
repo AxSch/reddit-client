@@ -2,11 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useRouteMatch } from "react-router-dom"
 import './PostListItem.scss'
+import { selectPosts } from '../../reducers/posts/postsSlice'
+import { useSelector, useStore } from 'react-redux'
 
-const PostListItem = ({ post, keyNo }) => {
+const PostListItem = ({ postId, keyNo }) => {
+    const posts = useSelector(selectPosts)
+    const post = posts[postId]
+    
     const calculateDate = (post) => {
         const date = new Date(post.created_utc * 1000)
-
+        
         return date.toDateString()
 
     }

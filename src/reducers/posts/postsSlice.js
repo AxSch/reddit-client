@@ -13,6 +13,7 @@ const postsSlice = createSlice({
     reducers: {
         storePosts: (state, action) => {
             const data = [...action.payload]
+
             const normalizedData = normalizeData(data)
             
             state.postsData = normalizedData

@@ -67,8 +67,8 @@ class Post extends Component {
         const splitLocation = location.pathname.split('/')
         const previousPath = splitLocation.splice(1, splitLocation.length -2).join("/")
 
-        if (post && post.length > 0) {
-            this.checkHasImage(post[0])
+        if (post) {
+            this.checkHasImage(post)
             return (
                 <div>
                     <div>
@@ -78,13 +78,13 @@ class Post extends Component {
                     </div>
                     <div className="post-header">
                         <div className="post-header-row">
-                            <h1>{post[0].title}</h1>
+                            <h1>{post.title}</h1>
                         </div>
                         <div className="post-header-row">
-                            <span>submitted on {post[0].created} at "time" by <span className="post-author">{post[0].author}</span></span>
+                            <span>submitted on {post.created} at "time" by <span className="post-author">{post.author}</span></span>
                         </div>
                         <div className="post-header-row-actions">
-                            <span>{post[0].num_comments} comments</span>
+                            <span>{post.num_comments} comments</span>
                             <span> share </span>
                             <span>save </span>
                             <span> hide </span>
@@ -94,7 +94,7 @@ class Post extends Component {
                         </div>
                     </div>
                     <div className="post-row-img">
-                        {this.checkHasImage(post[0])}
+                        {this.checkHasImage(post)}
                     </div>
                 </div>
             )
@@ -104,11 +104,13 @@ class Post extends Component {
     render() {
         const { post, isLoading } = this.state
         let renderComments
+        
         if (isLoading) {
             renderComments = <SkeletalLoading type="comments" />
         } else {
             renderComments = <CommentList />
         }
+        
         return (
             <div className="post">
                 <ErrorBoundary>

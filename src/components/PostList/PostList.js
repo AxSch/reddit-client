@@ -12,9 +12,9 @@ const PostList = () => {
 
     const renderPosts = posts => {
         if (posts) {
-            return posts.map((post, key) => {
+            return Object.keys(posts).map((post, key) => {
                 return (
-                    <PostListItem post={post} key={key} keyNo={key}/>
+                    <PostListItem postId={post} key={key} keyNo={key}/>
                 )
             })
         } else {
@@ -29,7 +29,7 @@ const PostList = () => {
     }
 
     const renderPostsSection = (posts) => {
-        if (posts.length > 0) {
+        if (Object.keys(posts).length > 0) {
             return (
                 <>
                     {renderPosts(posts)}
