@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useRouteMatch } from "react-router-dom"
-import './PostListItem.scss'
-import { selectPosts } from '../../reducers/posts/postsSlice'
 import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowCircleUp, faArrowCircleDown, faBomb, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
+import { selectPosts } from '../../reducers/posts/postsSlice'
+import './PostListItem.scss'
 
 const PostListItem = ({ postId, keyNo }) => {
     const posts = useSelector(selectPosts)
@@ -36,7 +38,9 @@ const PostListItem = ({ postId, keyNo }) => {
                 <span>{keyNo + 1}</span>
             </div>
             <div className="postlist-card-col-center">
-                <span>{post.score}</span>
+                <FontAwesomeIcon icon={faArrowCircleUp} size="lg" />
+                <span>{parseInt(post.score).toLocaleString()}</span>
+                <FontAwesomeIcon icon={faArrowCircleDown} size="lg" />
             </div>
             {renderThumbnail(post)}
             <div className="postlist-card-col">
@@ -49,8 +53,8 @@ const PostListItem = ({ postId, keyNo }) => {
                     <span>submitted {post.created} by <span className="postlist-card-author">u/{post.author}</span>  to <span className="postlist-card-subreddit">r/{post.subreddit}</span></span>
                 </div>
                 <div className="postlist-card-metadata">
-                    <span>icon - score {post.score}</span>
-                    <span>{post.num_comments} Comments</span>
+                    <span><FontAwesomeIcon className="postlist-icon" icon={faBomb} />{parseInt(post.score).toLocaleString()}</span>
+                    <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()}</span>
                 </div>
             </div>
         </div>
