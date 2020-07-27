@@ -4,6 +4,7 @@ import { storePosts, setNextPage } from '../../reducers/posts/postsSlice'
 import { store } from '../../app/store'
 import SkeletalLoading from '../../components/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
+import './Posts.scss'
 
 
 const PostList = lazy(() => import('../../components/PostList/PostList'))
@@ -11,24 +12,28 @@ class Posts extends Component {
 
     async fetchPagePosts(pageString) {
         try {
-            const posts  = await fetchAPI.fetchPosts(pageString)
+            const posts = await fetchAPI.fetchPosts(pageString)
             store.dispatch(storePosts(posts.data.children))
-            store.dispatch(setNextPage(posts.data.after))  
-        } catch(error) {
+            store.dispatch(setNextPage(posts.data.after))
+        } catch (error) {
             throw new Error("Posts could not be loaded. Please try again later.")
         }
     }
-    
+
     componentDidMount() {
         this.fetchPagePosts()
     }
 
     render() {
+        const { location } = this.props
 
         return (
-            <>  
+            <>
                 <ErrorBoundary>
-                    <Suspense fallback={<SkeletalLoading type="posts"/>}>
+                    <Suspense fallback={<SkeletalLoading type="posts" />}>
+                        <div className="posts-header">
+                            <h1>Top Posts for {location.pathname.substr(1)}</h1>
+                        </div>
                         <PostList />
                     </Suspense>
                 </ErrorBoundary>
