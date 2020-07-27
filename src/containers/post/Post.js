@@ -79,7 +79,7 @@ class Post extends Component {
             return (
                 <div>
                     <div>
-                        <Link className="back-link" to="" onClick={() => history.push(previousPath)}>
+                        <Link to="" onClick={() => history.push(previousPath)}>
                             Back
                         </Link>
                     </div>
