@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { normalizeData } from '../../helpers/normalizeData';
+import { normalizeData } from '../../helpers/helperFns';
 
 
 const postsSlice = createSlice({
