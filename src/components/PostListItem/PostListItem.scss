@@ -55,13 +55,13 @@
     }
 }
 
-.relative {
-    position: relative;
-}
 
 .postlist-card-metadata {
-    position: absolute;
-    top: 120px;
+    margin-top: 8px;
+
+    :nth-child(1) {
+        margin-right: 10px;
+    }
 }
 
 .postlist-card-metadata-icon {

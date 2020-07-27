@@ -13,6 +13,18 @@ const PostListItem = ({ post, keyNo }) => {
     calculateDate(post)
     let match = useRouteMatch("/r/pics")
 
+    const renderThumbnail = (post) => {
+        if (post.hasOwnProperty('preview')) {
+            return (
+                <div className="postlist-card-col-center">
+                    <img className="postlist-card-thumbnail" src={post.thumbnail} alt={post.author_flair} width="140px" height="140px" />
+                </div>
+            )
+        } else {
+            return ""
+        }
+    }
+
     return (
         <div className="postlist-card">
             <div className="postlist-card-col-center">
@@ -21,10 +33,8 @@ const PostListItem = ({ post, keyNo }) => {
             <div className="postlist-card-col-center">
                 <span>{post.score}</span>
             </div>
-            <div className="postlist-card-col-center">
-                <img className="postlist-card-thumbnail" src={post.thumbnail} alt={post.title} width="140px" height="140px" />
-            </div>
-            <div className="postlist-card-col relative">
+            {renderThumbnail(post)}
+            <div className="postlist-card-col">
                 <div className="postlist-card-row">
                     <Link className="postlist-card-link" to={`${match.path}/${post.id}`} >
                         <div>{post.title}</div>
