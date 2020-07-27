@@ -6,15 +6,16 @@ import { normalizeData } from '../../helpers/normalizeData';
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
-        data: [],
+        postsData: {},
         nextPage: '',
         postComments: null
     },
     reducers: {
         storePosts: (state, action) => {
             const data = [...action.payload]
+            const normalizedData = normalizeData(data)
             
-            state.data = normalizeData(data)
+            state.postsData = normalizedData
         },
         setNextPage: (state, action) => {
             state.nextPage = action.payload
@@ -22,24 +23,25 @@ const postsSlice = createSlice({
         updatePosts: (state, action) => {
             const data = [...action.payload]
             const normalizedData = normalizeData(data)
-            normalizedData.forEach(post => {
-                state.data.push(post)
-            })
+            
+            state.postsData = {...state.postsData, ...normalizedData}
         },
         storePostComments: (state, action) => {
-            const post = action.payload
-            state.postComments = post
+            const postComments = action.payload["children"]
+            const normalizedData = normalizeData(postComments)
+
+            state.postComments = normalizedData
         }
     }
 })
 
-export const selectPosts = state => state.posts.data
+export const selectPosts = state => state.posts.postsData
 
 export const selectNextPage = state => state.posts.nextPage
 
-export const selectPost = (state, postId) => state.posts.data.filter(post => post.id === postId)
+export const selectPost = (state, postId) => state.posts.postsData[postId]
 
-export const selectPostComments = (state) => state.posts.postComments.children
+export const selectPostComments = (state) => state.posts.postComments
 
 export const { storePosts, setNextPage, updatePosts, storePostComments } = postsSlice.actions
 
