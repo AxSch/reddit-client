@@ -56,11 +56,14 @@ class Post extends Component {
             }
         } else {
             const postRAW = ReactHtmlParser(post.selftext_html, {decodeEntities:true})
-            const cleaned = postRAW[0].split('<!-- SC_ON -->')
+            const cleanedHTML = postRAW[0].split('<!-- SC_ON -->')
+            const cleanedText = cleanedHTML[0].split('<!-- SC_OFF -->')
+            const htmlText = cleanedText[1]
+
 
             return (
                 <div>
-                    {ReactHtmlParser(cleaned)}
+                    {ReactHtmlParser(htmlText)}
                 </div>
             )
         }
@@ -118,7 +121,7 @@ class Post extends Component {
         return (
             <div className="post">
                 <ErrorBoundary>
-                    <Suspense fallback={<SkeletalLoading type={"post"} />}>
+                    <Suspense fallback={<SkeletalLoading type="post" />}>
                         {this.renderHeader(post)}
                         {renderComments}
                     </Suspense>
