@@ -1,0 +1,30 @@
+.comment-list {
+    margin-top: 20px;
+}
+
+.comment-list-header {
+    color: rgb(51, 77, 77);
+}
+
+.comment {
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color:  rgb(240, 245, 245);
+}
+
+.comment-metadata {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 24px;
+    font-size: 12px;
+    color: rgb(102, 153, 153);
+
+    :nth-child(-n+2) {
+        margin-right: 5px;
+    }
+}
+
+.comment-body {
+    padding-bottom: 12px;
+}
