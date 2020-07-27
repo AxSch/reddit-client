@@ -1,6 +1,8 @@
 import React, { Component, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import ReactHtmlParser from 'react-html-parser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBomb, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import { fetchAPI } from '../../api/api'
 import SkeletalLoading from '../../components/SkeletalLoading/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
@@ -47,13 +49,9 @@ class Post extends Component {
 
     checkHasImage (post) {
         if (post.hasOwnProperty('preview')) {
-            if (post.preview.images.length > 0) {
-                const resolutions = post.preview.images[0].resolutions
-                const postImgUrl =  post.preview.images[0].resolutions[resolutions.length -1]["url"]
-                return (
-                    <img className="post-img" src={postImgUrl} alt={post.title} />
-                )
-            }
+            return (
+                <img className="post-img" src={post.url} alt={post.title} />
+            )
         } else {
             const postRAW = ReactHtmlParser(post.selftext_html, {decodeEntities:true})
             const cleanedHTML = postRAW[0].split('<!-- SC_ON -->')
@@ -91,7 +89,8 @@ class Post extends Component {
                             <span>submitted on {post.created} at "time" by <span className="post-author">{post.author}</span></span>
                         </div>
                         <div className="post-header-row-actions">
-                            <span>{post.num_comments} comments</span>
+                            <span><FontAwesomeIcon className="postlist-icon" icon={faBomb}/>{parseInt(post.score).toLocaleString()}</span>
+                            <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt}/>{parseInt(post.num_comments).toLocaleString()} comments</span>
                             <span> share </span>
                             <span>save </span>
                             <span> hide </span>
