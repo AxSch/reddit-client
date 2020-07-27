@@ -1,7 +1,7 @@
 const filterData = data => {
     const filteredData = data.filter(element => element.data["over_18"] === false)
     if (filteredData.length > 0) {
-        return filterData
+        return filteredData
     } else return data
         
 }
