@@ -1,5 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
+import ReactHtmlParser from 'react-html-parser';
 import { fetchAPI } from '../../api/api'
 import SkeletalLoading from '../../components/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
@@ -54,9 +55,12 @@ class Post extends Component {
                 )
             }
         } else {
+            const postRAW = ReactHtmlParser(post.selftext_html, {decodeEntities:true})
+            const cleaned = postRAW[0].split('<!-- SC_ON -->')
+
             return (
                 <div>
-                    {post.selftext}
+                    {ReactHtmlParser(cleaned)}
                 </div>
             )
         }
