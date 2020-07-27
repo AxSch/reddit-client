@@ -7,7 +7,8 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState: {
         data: [],
-        nextPage: ''
+        nextPage: '',
+        postComments: null
     },
     reducers: {
         storePosts: (state, action) => {
@@ -24,6 +25,10 @@ const postsSlice = createSlice({
             normalizedData.forEach(post => {
                 state.data.push(post)
             })
+        },
+        storePostComments: (state, action) => {
+            const post = action.payload
+            state.postComments = post
         }
     }
 })
@@ -34,6 +39,8 @@ export const selectNextPage = state => state.posts.nextPage
 
 export const selectPost = (state, postId) => state.posts.data.filter(post => post.id === postId)
 
-export const { storePosts, setNextPage, updatePosts } = postsSlice.actions
+export const selectPostComments = (state) => state.posts.postComments.children
+
+export const { storePosts, setNextPage, updatePosts, storePostComments } = postsSlice.actions
 
 export default postsSlice.reducer
