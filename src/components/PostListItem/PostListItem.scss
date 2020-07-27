@@ -8,21 +8,21 @@
     border-radius: 15px;
 }
 
-.postlist-row {
+.postlist-card-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
 
-.postlist-col {
+.postlist-card-col {
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.postlist-col-center {
+.postlist-card-col-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,21 +30,21 @@
     padding-right: 20px;
 }
 
-.postlist-author,
-.postlist-subreddit {
+.postlist-card-author,
+.postlist-card-subreddit {
     color: rgb(102, 153, 153);
 }
 
-.postlist-title {
+.postlist-card-title {
     display: flex;
     flex-direction: row;
 }
 
-.postlist-thumbnail {
+.postlist-card-thumbnail {
     border-radius: 3px;
 }
 
-.postlist-link {
+.postlist-card-link {
     color: rgb(51, 77, 77);
     text-decoration: none;
     margin-bottom: 8px;
@@ -59,11 +59,11 @@
     position: relative;
 }
 
-.postlist-metadata {
+.postlist-card-metadata {
     position: absolute;
     top: 120px;
 }
 
-.postlist-metadata-icon {
+.postlist-card-metadata-icon {
     margin-right: 20px;
 }

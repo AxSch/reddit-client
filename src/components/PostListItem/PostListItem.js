@@ -15,25 +15,25 @@ const PostListItem = ({ post, keyNo }) => {
 
     return (
         <div className="postlist-card">
-            <div className="postlist-col-center">
+            <div className="postlist-card-col-center">
                 <span>{keyNo + 1}</span>
             </div>
-            <div className="postlist-col-center">
+            <div className="postlist-card-col-center">
                 <span>{post.score}</span>
             </div>
-            <div className="postlist-col-center">
-                <img className="postlist-thumbnail" src={post.thumbnail} alt={post.title} width="140px" height="140px" />
+            <div className="postlist-card-col-center">
+                <img className="postlist-card-thumbnail" src={post.thumbnail} alt={post.title} width="140px" height="140px" />
             </div>
-            <div className="postlist-col relative">
-                <div className="postlist-row">
-                    <Link className="postlist-link" to={`${match.path}/${post.id}`} >
+            <div className="postlist-card-col relative">
+                <div className="postlist-card-row">
+                    <Link className="postlist-card-link" to={`${match.path}/${post.id}`} >
                         <div>{post.title}</div>
                     </Link>
                 </div>
-                <div className="postlist-row">
-                    <span>submitted {post.created} by <span className="postlist-author">u/{post.author}</span>  to <span className="postlist-subreddit">r/{post.subreddit}</span></span>
+                <div className="postlist-card-row">
+                    <span>submitted {post.created} by <span className="postlist-card-author">u/{post.author}</span>  to <span className="postlist-card-subreddit">r/{post.subreddit}</span></span>
                 </div>
-                <div className="postlist-metadata">
+                <div className="postlist-card-metadata">
                     <span>icon - score {post.score}</span>
                     <span>{post.num_comments} Comments</span>
                 </div>
