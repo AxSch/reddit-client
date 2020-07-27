@@ -44,12 +44,31 @@ class Post extends Component {
         this.setState({ post: post })
     }
 
+    checkHasImage (post) {
+        if (post.hasOwnProperty('preview')) {
+            if (post.preview.images.length > 0) {
+                const resolutions = post.preview.images[0].resolutions
+                const postImgUrl =  post.preview.images[0].resolutions[resolutions.length -1]["url"]
+                return (
+                    <img className="post-img" src={postImgUrl} alt={post.title} />
+                )
+            }
+        } else {
+            return (
+                <div>
+                    {post.selftext}
+                </div>
+            )
+        }
+    }
+
     renderHeader(post) {
         const { location, history } = this.props
         const splitLocation = location.pathname.split('/')
         const previousPath = splitLocation.splice(1, splitLocation.length -2).join("/")
 
         if (post && post.length > 0) {
+            this.checkHasImage(post[0])
             return (
                 <div>
                     <div>
@@ -75,7 +94,7 @@ class Post extends Component {
                         </div>
                     </div>
                     <div className="post-row-img">
-                        <img className="post-img" src={post[0].url} alt={post[0].author_flair_text} />
+                        {this.checkHasImage(post[0])}
                     </div>
                 </div>
             )
