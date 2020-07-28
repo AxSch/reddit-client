@@ -6,16 +6,19 @@
 }
 
 .post-header {
-    margin-bottom: 16px;
+    margin-top: 20px;
 }
 
 .post-header-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
 
     h1 {
         color: rgb(51, 77, 77);
+        margin-top: 20px;
+        margin-bottom: 4px;
     }
 
     span {
@@ -23,6 +26,7 @@
 
         .post-author {
             color: rgb(102, 153, 153);
+            margin-right: 12px;;
         }
     }
 }
@@ -50,13 +54,6 @@
 .post-img {
     width: auto;
     height: auto;
-}
-
-.post-awards-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 10px;
 }
 
 .post-awards-icons {

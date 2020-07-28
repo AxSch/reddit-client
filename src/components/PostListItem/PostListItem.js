@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useRouteMatch } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleUp, faArrowCircleDown, faBomb, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleUp, faArrowCircleDown, faArrowUp, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import { selectPosts } from '../../reducers/posts/postsSlice'
 import { formatDate } from '../../helpers/helperFns'
 import './PostListItem.scss'
@@ -48,7 +48,7 @@ const PostListItem = ({ postId, keyNo }) => {
                 </div>
                 <div className="postlist-card-footer">
                     <div className="postlist-card-metadata">
-                        <span><FontAwesomeIcon className="postlist-icon" icon={faBomb} />{parseInt(post.score).toLocaleString()}</span>
+                        <span><FontAwesomeIcon className="postlist-icon" icon={faArrowUp} />{parseInt(post.score).toLocaleString()}</span>
                         <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()}</span>
                     </div>
                 </div>

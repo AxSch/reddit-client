@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import ReactHtmlParser from 'react-html-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBomb, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import { fetchAPI } from '../../api/api'
 import SkeletalLoading from '../../components/SkeletalLoading/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
@@ -105,7 +105,7 @@ class Post extends Component {
                 return (
                     <div className="post-awards-icons" key={key}>
                         <img src={award.url} alt={award.desc} width="24px" height="24px" />
-                        {award.count > 1 ? <span>{award.count}</span> : ""}
+                        <span>{award.count}</span>
                     </div>
                 )
             })
@@ -131,27 +131,19 @@ class Post extends Component {
                     </div>
                     <div className="post-header">
                         <div className="post-header-row">
-                            <h1>{post.title}</h1>
-                        </div>
-                        <div className="post-header-row">
                             <span>submitted on {postDate.pDate} at {postDate.pTime} by <span className="post-author">{post.author}</span></span>
-                        </div>
-                        <div className="post-awards-row">
                             {this.renderAwards(postAwards)}
                         </div>
-                        <div className="post-header-row-actions">
-                            <span><FontAwesomeIcon className="postlist-icon" icon={faBomb} />{parseInt(post.score).toLocaleString()}</span>
-                            <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()} comments</span>
-                            <span> share </span>
-                            <span>save </span>
-                            <span> hide </span>
-                            <span> give award </span>
-                            <span> report </span>
-                            <span> crosspost </span>
+                        <div className="post-header-row">
+                            <h1>{post.title}</h1>
                         </div>
                     </div>
                     <div className="post-row-img">
                         {this.checkHasImage(post)}
+                    </div>
+                    <div className="post-header-row-actions">
+                        <span><FontAwesomeIcon className="postlist-icon" icon={faArrowUp} />{parseInt(post.score).toLocaleString()}</span>
+                        <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()} Comments</span>
                     </div>
                 </div>
             )
