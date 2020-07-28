@@ -24,3 +24,24 @@ export const normalizeData = data => {
     return flatData
 
 }
+
+
+export const formatDate = (date) => {
+     const utcDate = new Date(date * 1000)
+
+     const day = utcDate.getDate().toString()
+     const month = (utcDate.getUTCMonth() + 1).toString()
+     const year = utcDate.getFullYear().toString()
+     const hour = utcDate.getHours().toString()
+     const minutes = utcDate.getMinutes().toString()
+
+     const pDate = `${day}/${month}/${year}`
+     const pTime = `${hour.padStart(2, '0')}:${minutes.padStart(2,'0')}`
+
+     return {
+        pDate,
+        pTime,
+     }
+
+     
+}
