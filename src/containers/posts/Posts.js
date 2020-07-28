@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react'
+import { storePosts, setNextPage, updatePosts, selectNextPage } from '../../reducers/posts/postsSlice'
+import { debounce } from "lodash"
 import { fetchAPI } from '../../api/api'
-import { storePosts, setNextPage } from '../../reducers/posts/postsSlice'
 import { store } from '../../app/store'
 import SkeletalLoading from '../../components/SkeletalLoading/SkeletalLoading'
 import ErrorBoundary from '../../ErrorBoundary'
@@ -8,20 +9,45 @@ import './Posts.scss'
 
 
 const PostList = lazy(() => import('../../components/PostList/PostList'))
+
 class Posts extends Component {
 
-    async fetchPagePosts() {
+    async fetchPagePosts(pageString) {
         try {
-            const posts = await fetchAPI.fetchPosts()
-            store.dispatch(storePosts(posts.data.children))
-            store.dispatch(setNextPage(posts.data.after))
+            if (pageString) {
+                const posts = await fetchAPI.fetchPosts(pageString)
+                store.dispatch(updatePosts(posts.data.children))
+                store.dispatch(setNextPage(posts.data.after))
+            } else {
+                const posts = await fetchAPI.fetchPosts()
+                store.dispatch(storePosts(posts.data.children))
+                store.dispatch(setNextPage(posts.data.after))
+            }
         } catch (error) {
             throw new Error("Posts could not be loaded. Please try again later.")
         }
     }
 
+    lazyLoader = () => {
+        const { innerHeight, scrollY } = window
+        const { offsetHeight } = document.body
+        const advance = 100
+        const nextPage = selectNextPage(store.getState())
+
+        if (innerHeight + scrollY + advance >= offsetHeight) {
+            this.fetchPagePosts(nextPage)
+        }
+    }
+
     componentDidMount() {
         this.fetchPagePosts()
+        window.addEventListener("scroll", debounce(this.lazyLoader, 300));
+        window.addEventListener("resize", debounce(this.lazyLoader, 300));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", () => {});
+        window.removeEventListener("resize", () => {});
     }
 
     render() {
