@@ -28,6 +28,8 @@ const SkeletalLoading = ({ type }) => {
             return renderBlock(3)
         case "posts":
             return renderBlock(6)
+        case "posts-ext":
+            return renderBlock(2)
         case "comments":
             return renderBlock(2)
         default:
