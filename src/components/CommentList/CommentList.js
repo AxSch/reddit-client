@@ -4,6 +4,7 @@ import { selectPostComments } from '../../reducers/posts/postsSlice'
 import './CommentList.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBomb } from '@fortawesome/free-solid-svg-icons'
+import { formatDate } from '../../helpers/helperFns'
 
 const CommentList = () => {
     const comments = useSelector(selectPostComments)
@@ -28,12 +29,13 @@ const CommentList = () => {
 
     const renderComments = comments => {
         return comments.reverse().map((comment, key) => {
+            const commentDate = formatDate(comment.created)
             return (
                 <div className="comment" key={key}>
                     <div className="comment-metadata">
                         <span>{comment.author}</span>
                         <span><FontAwesomeIcon icon={faBomb} />{parseInt(comment.score).toLocaleString()}</span>
-                        <span>{comment.created}</span>
+                        <span>{commentDate.pDate} - {commentDate.pTime}</span>
                     </div>
                     <div className="comment-body">
                         {comment.body}

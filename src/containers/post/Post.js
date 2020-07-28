@@ -9,6 +9,7 @@ import ErrorBoundary from '../../ErrorBoundary'
 import { selectPost, storePostComments } from '../../reducers/posts/postsSlice'
 import { store } from '../../app/store'
 import './Post.scss'
+import { formatDate } from '../../helpers/helperFns';
 
 const CommentList = lazy(() => import('../../components/CommentList/CommentList'))
 
@@ -74,6 +75,7 @@ class Post extends Component {
 
         if (post) {
             this.checkHasImage(post)
+            const postDate = formatDate(post.created)
             return (
                 <div>
                     <div>
@@ -86,7 +88,7 @@ class Post extends Component {
                             <h1>{post.title}</h1>
                         </div>
                         <div className="post-header-row">
-                            <span>submitted on {post.created} at "time" by <span className="post-author">{post.author}</span></span>
+                            <span>submitted on {postDate.pDate} at {postDate.pTime} by <span className="post-author">{post.author}</span></span>
                         </div>
                         <div className="post-header-row-actions">
                             <span><FontAwesomeIcon className="postlist-icon" icon={faBomb}/>{parseInt(post.score).toLocaleString()}</span>
