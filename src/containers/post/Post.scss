@@ -7,6 +7,9 @@
 
 .post-header {
     margin-top: 20px;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
 }
 
 .post-header-row {
@@ -14,16 +17,18 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-
     h1 {
         color: rgb(51, 77, 77);
         margin-top: 20px;
         margin-bottom: 4px;
+        padding-left: 10px;
+        padding-bottom: 10px;
     }
-
+    
     span {
         color: black;
-
+        padding-top: 10px;
+        padding-left: 10px;
         .post-author {
             color: rgb(102, 153, 153);
             margin-right: 12px;;
@@ -38,7 +43,8 @@
     margin-top: 10px;
     font-size: 12px;
     color: rgb(102, 153, 153);
-
+    padding-left: 10px;
+    padding-bottom: 10px;
     span:nth-child(-n+7) {
         margin-right: 20px;
     }
@@ -49,6 +55,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding-bottom: 30px;
 }
 
 .post-img {

@@ -100,7 +100,7 @@ class Post extends Component {
     }
 
     renderAwards(awards) {
-        if(awards) {
+        if (awards) {
             return Object.values(awards).map((award, key) => {
                 return (
                     <div className="post-awards-icons" key={key}>
@@ -137,13 +137,13 @@ class Post extends Component {
                         <div className="post-header-row">
                             <h1>{post.title}</h1>
                         </div>
-                    </div>
-                    <div className="post-row-img">
-                        {this.checkHasImage(post)}
-                    </div>
-                    <div className="post-header-row-actions">
-                        <span><FontAwesomeIcon className="postlist-icon" icon={faArrowUp} />{parseInt(post.score).toLocaleString()}</span>
-                        <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()} Comments</span>
+                        <div className="post-row-img">
+                            {this.checkHasImage(post)}
+                        </div>
+                        <div className="post-header-row-actions">
+                            <span><FontAwesomeIcon className="postlist-icon" icon={faArrowUp} />{parseInt(post.score).toLocaleString()}</span>
+                            <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()} Comments</span>
+                        </div>
                     </div>
                 </div>
             )
