@@ -5,19 +5,13 @@ import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleUp, faArrowCircleDown, faBomb, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import { selectPosts } from '../../reducers/posts/postsSlice'
+import { formatDate } from '../../helpers/helperFns'
 import './PostListItem.scss'
 
 const PostListItem = ({ postId, keyNo }) => {
     const posts = useSelector(selectPosts)
     const post = posts[postId]
-    
-    const calculateDate = (post) => {
-        const date = new Date(post.created_utc * 1000)
-        
-        return date.toDateString()
-
-    }
-    calculateDate(post)
+    const postDate = formatDate(post.created)
     let match = useRouteMatch("/r/pics")
 
     const renderThumbnail = (post) => {
@@ -50,11 +44,13 @@ const PostListItem = ({ postId, keyNo }) => {
                     </Link>
                 </div>
                 <div className="postlist-card-row">
-                    <span>submitted {post.created} by <span className="postlist-card-author">u/{post.author}</span>  to <span className="postlist-card-subreddit">r/{post.subreddit}</span></span>
+                    <span>submitted {postDate.pDate} by <span className="postlist-card-author">u/{post.author}</span>  to <span className="postlist-card-subreddit">r/{post.subreddit}</span></span>
                 </div>
-                <div className="postlist-card-metadata">
-                    <span><FontAwesomeIcon className="postlist-icon" icon={faBomb} />{parseInt(post.score).toLocaleString()}</span>
-                    <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()}</span>
+                <div className="postlist-card-footer">
+                    <div className="postlist-card-metadata">
+                        <span><FontAwesomeIcon className="postlist-icon" icon={faBomb} />{parseInt(post.score).toLocaleString()}</span>
+                        <span><FontAwesomeIcon className="postlist-icon" icon={faCommentAlt} />{parseInt(post.num_comments).toLocaleString()}</span>
+                    </div>
                 </div>
             </div>
         </div>

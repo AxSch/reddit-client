@@ -67,3 +67,10 @@
 .postlist-icon {
     margin-right: 4px;
 }
+
+.postlist-card-footer {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: end;
+}
