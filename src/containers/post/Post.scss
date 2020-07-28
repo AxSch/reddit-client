@@ -51,3 +51,14 @@
     width: auto;
     height: auto;
 }
+
+.post-awards-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.post-awards-icons {
+    margin: 4px;
+}
