@@ -38,3 +38,6 @@ Due to the time spent on this test, I have not included any tests. If I were to 
 * Add UI/UX for the show more button on the posts page
 
 * Add functionality to share post
+
+* Bug in top comments func, keeps displaying comments with a score of 1, like ads
+
