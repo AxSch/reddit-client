@@ -11,11 +11,11 @@ const SkeletalLoading = ({ type }) => {
 
     }
 
-    const renderBlock = (amount) => {
+    const renderBlock = (amount, isShowHeader=true) => {
         const skeletonCards = renderPostsSkeleton(amount)
         return (
             <>
-                <div className="posts-header-dummy" />
+                {isShowHeader ? <div className="posts-header-dummy" /> : ""}
                 <div className="postlist-col">
                     {skeletonCards}
                 </div>
@@ -29,7 +29,7 @@ const SkeletalLoading = ({ type }) => {
         case "posts":
             return renderBlock(6)
         case "posts-ext":
-            return renderBlock(2)
+            return renderBlock(3, false)
         case "comments":
             return renderBlock(2)
         default:
